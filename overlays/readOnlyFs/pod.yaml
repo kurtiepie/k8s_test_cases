@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kurtis-security-context-demo-priv-esca
+spec:
+  securityContext:
+    readOnlyRootFilesystem: true

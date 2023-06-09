@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kurtis-security-context-demo-priv-esca
+spec:
+  containers:
+  - name: sec-ctx-demo
+    securityContext:
+      capabilities:
+        drop:
+          - ALL
+        add:
+          - SYS_ADMIN

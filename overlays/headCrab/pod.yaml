@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kurtis-security-context-demo-priv-esca
+spec:
+  containers:
+  - name: sec-ctx-demo
+    image: teamnautilus/redis-headcrab
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - mountPath: /dev/shm
+      name: shm-volume
+  volumes:
+  - name: shm-volume
+    hostPath:
+      # directory location on host
+      path: /dev/shm
+      # this field is optional
+      type: DirectoryOrCreate

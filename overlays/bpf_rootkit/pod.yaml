@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kurtis-security-context-demo-priv-esca
+spec:
+  containers:
+  - name: sec-ctx-demo
+    image: teamnautilus/bpf_rootkit_demo:latest
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - mountPath: /sys/kernel/tracing/
+      name: trace-volume
+    - mountPath: /sys/kernel/debug/
+      name: debug-volume
+    - mountPath: /kurtis
+      name: kurtis-volume
+  volumes:
+  - name: trace-volume
+    hostPath:
+      # directory location on host
+      path: /sys/kernel/tracing/
+      # this field is optional
+      type: DirectoryOrCreate
+  - name: debug-volume
+    hostPath:
+      # directory location on host
+      path: /sys/kernel/debug/
+      # this field is optional
+      type: DirectoryOrCreate
+  - name: kurtis-volume
+    hostPath:
+      # directory location on host
+      path: /kurtis
+      # this field is optional
+      type: DirectoryOrCreate
